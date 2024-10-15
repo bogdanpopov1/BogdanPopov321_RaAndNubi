@@ -92,6 +92,12 @@
     <Compile Include="Data\DBO\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\NubiInfoPage.xaml.cs">
+      <DependentUpon>NubiInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RaInfoPage.xaml.cs">
+      <DependentUpon>RaInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
@@ -107,6 +113,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\NubiInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RaInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AuthorizationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -158,9 +172,7 @@
     <Resource Include="Images\Ra\ra2.jpg" />
     <Resource Include="Images\Ra\ra3.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Data\DBO\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

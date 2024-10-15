@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RaAndNubi"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Authorization" Height="1080" Width="1920">
+        Title="Authorization" Height="1020" Width="1900">
     <Window.Background>
         <ImageBrush ImageSource="/Images/RaAndNubi/raAndNubi1.jpg" Stretch="UniformToFill"/>
     </Window.Background>
@@ -19,7 +19,7 @@
             <Label Content="ЛЮБИМЧИКИ" FontWeight="Bold" FontSize="72" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,40" Foreground="#FFFF9145"/>
             <StackPanel Margin="40">
                 <Label Content="Пользователь" Padding="0, 4" FontSize="30" />
-                <ComboBox x:Name="LoginCB" DisplayMemberPath="FullName" SelectedValuePath="Id" Height="50" Margin="0,0,0,10" FontSize="24" Width="600" Padding="6,6,6,0" />
+                <ComboBox x:Name="LoginCB" DisplayMemberPath="FullName" SelectedValuePath="Id" Height="50" Margin="0,0,0,10" FontSize="24" Width="600" Padding="6,6,6,0" SelectionChanged="LoginCB_SelectionChanged" />
                 <Label Content="Пароль" Padding="0, 4" FontSize="30" />
                 <PasswordBox x:Name="PasswordPB" Height="50" PasswordChar="●" Width="600" FontSize="24" Padding="0,5,0,0"/>
                 <Button x:Name="LoginBtn" Content="Войти" Background="#FFFF9145" BorderBrush="#FFAA5100" FontSize="30" FontWeight="Bold" Cursor="Hand" Click="LoginBtn_Click" Foreground="White" Padding="0,0,0,0" Height="50" Margin="0,30,0,10" />

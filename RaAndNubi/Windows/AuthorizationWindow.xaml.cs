@@ -19,6 +19,7 @@ namespace RaAndNubi.Windows
     public partial class AuthorizationWindow : Window
     {
         private List<Person> _people;
+        private Person _selectedPerson;
         public AuthorizationWindow()
         {
             InitializeComponent();
@@ -28,7 +29,18 @@ namespace RaAndNubi.Windows
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (LoginCB.SelectedItem != null && _selectedPerson.Password.ToString() == PasswordPB.Password.Trim())
+            {
+                new MainWindow(_selectedPerson).Show();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Выберите пользователя или проверьте пароль!", "Ошибка заполнения", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
 
+        private void LoginCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _selectedPerson = (Person)LoginCB.SelectedItem;
         }
     }
 }

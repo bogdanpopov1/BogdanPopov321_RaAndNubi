@@ -12,18 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using RaAndNubi.Data.DBO;
-using RaAndNubi.Data;
 
-namespace RaAndNubi
+namespace RaAndNubi.Pages
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для NubiInfoPage.xaml
+    /// </summary>
+    public partial class NubiInfoPage : Page
     {
-        private Person _person;
-        public MainWindow(Person person)
+        public NubiInfoPage()
         {
             InitializeComponent();
-            _person = person;    
         }
     }
 }
