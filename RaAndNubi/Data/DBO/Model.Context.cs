@@ -25,9 +25,9 @@ namespace RaAndNubi.Data.DBO
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Nubi> Nubi { get; set; }
+        public virtual DbSet<Content> Content { get; set; }
         public virtual DbSet<Person> Person { get; set; }
-        public virtual DbSet<Ra> Ra { get; set; }
+        public virtual DbSet<Pet> Pet { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

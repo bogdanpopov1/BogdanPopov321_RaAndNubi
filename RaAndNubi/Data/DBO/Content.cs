@@ -12,10 +12,13 @@ namespace RaAndNubi.Data.DBO
     using System;
     using System.Collections.Generic;
     
-    public partial class Ra
+    public partial class Content
     {
         public int Id { get; set; }
+        public int Id_pet { get; set; }
         public string Img { get; set; }
         public string Discription { get; set; }
+    
+        public virtual Pet Pet { get; set; }
     }
 }

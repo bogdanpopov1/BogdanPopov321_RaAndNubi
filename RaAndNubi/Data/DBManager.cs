@@ -33,5 +33,15 @@ namespace RaAndNubi.Data
         {
             return _context.Person.ToList();
         }
+
+        public static List<Pet> GetPets()
+        {
+            return _context.Pet.ToList();
+        }
+
+        public static List<Content> GetContent()
+        {
+            return _context.Content.ToList();
+        }
     }
 }

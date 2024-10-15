@@ -12,10 +12,18 @@ namespace RaAndNubi.Data.DBO
     using System;
     using System.Collections.Generic;
     
-    public partial class Nubi
+    public partial class Pet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Pet()
+        {
+            this.Content = new HashSet<Content>();
+        }
+    
         public int Id { get; set; }
-        public string Img { get; set; }
-        public string Discription { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Content> Content { get; set; }
     }
 }

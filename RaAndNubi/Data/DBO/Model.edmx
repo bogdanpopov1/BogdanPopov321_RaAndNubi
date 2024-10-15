@@ -5,11 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище RaAndNubiModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Nubi">
+        <EntityType Name="Content">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_pet" Type="int" Nullable="false" />
           <Property Name="Img" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Discription" Type="varchar" MaxLength="500" />
         </EntityType>
@@ -21,13 +22,12 @@
           <Property Name="FullName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Ra">
+        <EntityType Name="Pet">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Img" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Discription" Type="varchar" MaxLength="500" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -39,24 +39,42 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK_Content_Pet">
+          <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="Id_pet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище RaAndNubiModelContainer">
-          <EntitySet Name="Nubi" EntityType="Self.Nubi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ra" EntityType="Self.Ra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Content_Pet" Association="Self.FK_Content_Pet">
+            <End Role="Pet" EntitySet="Pet" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RaAndNubiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Nubi">
+        <EntityType Name="Content">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_pet" Type="Int32" Nullable="false" />
           <Property Name="Img" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Discription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pet" Relationship="Self.FK_Content_Pet" FromRole="Content" ToRole="Pet" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -66,13 +84,13 @@
           <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Ra">
+        <EntityType Name="Pet">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Img" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Discription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="Self.FK_Content_Pet" FromRole="Pet" ToRole="Content" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -84,11 +102,27 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <Association Name="FK_Content_Pet">
+          <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="Id_pet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RaAndNubiEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Nubi" EntityType="Self.Nubi" />
+          <EntitySet Name="Content" EntityType="Self.Content" />
           <EntitySet Name="Person" EntityType="Self.Person" />
-          <EntitySet Name="Ra" EntityType="Self.Ra" />
+          <EntitySet Name="Pet" EntityType="Self.Pet" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Content_Pet" Association="Self.FK_Content_Pet">
+            <End Role="Pet" EntitySet="Pet" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -96,10 +130,11 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище RaAndNubiModelContainer" CdmEntityContainer="RaAndNubiEntities">
-          <EntitySetMapping Name="Nubi">
-            <EntityTypeMapping TypeName="RaAndNubiModel.Nubi">
-              <MappingFragment StoreEntitySet="Nubi">
+          <EntitySetMapping Name="Content">
+            <EntityTypeMapping TypeName="RaAndNubiModel.Content">
+              <MappingFragment StoreEntitySet="Content">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_pet" ColumnName="Id_pet" />
                 <ScalarProperty Name="Img" ColumnName="Img" />
                 <ScalarProperty Name="Discription" ColumnName="Discription" />
               </MappingFragment>
@@ -114,12 +149,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ra">
-            <EntityTypeMapping TypeName="RaAndNubiModel.Ra">
-              <MappingFragment StoreEntitySet="Ra">
+          <EntitySetMapping Name="Pet">
+            <EntityTypeMapping TypeName="RaAndNubiModel.Pet">
+              <MappingFragment StoreEntitySet="Pet">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Img" ColumnName="Img" />
-                <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

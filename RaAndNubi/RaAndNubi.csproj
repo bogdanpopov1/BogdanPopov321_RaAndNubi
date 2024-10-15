@@ -65,6 +65,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\DBManager.cs" />
+    <Compile Include="Data\DBO\Content.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\DBO\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -80,23 +83,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Data\DBO\Nubi.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Data\DBO\Person.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\DBO\Ra.cs">
+    <Compile Include="Data\DBO\Pet.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\DBO\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\NubiInfoPage.xaml.cs">
-      <DependentUpon>NubiInfoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\RaInfoPage.xaml.cs">
-      <DependentUpon>RaInfoPage.xaml</DependentUpon>
+    <Compile Include="Pages\PetInfoPage.xaml.cs">
+      <DependentUpon>PetInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -113,11 +110,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\NubiInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\RaInfoPage.xaml">
+    <Page Include="Pages\PetInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,12 +165,11 @@
     <Resource Include="Images\Ra\ra2.jpg" />
     <Resource Include="Images\Ra\ra3.jpg" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Data\DBO\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Data\DBO\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
