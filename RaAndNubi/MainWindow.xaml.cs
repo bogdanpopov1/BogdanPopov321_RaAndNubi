@@ -4,6 +4,7 @@ using System.Windows;
 using RaAndNubi.Data.DBO;
 using RaAndNubi.Data;
 using RaAndNubi.Pages;
+using System.IO;
 
 namespace RaAndNubi
 {

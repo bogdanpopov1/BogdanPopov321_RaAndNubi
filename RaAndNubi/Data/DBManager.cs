@@ -43,5 +43,11 @@ namespace RaAndNubi.Data
         {
             return _context.Content.ToList();
         }
+
+        public static void AddContent(Content content)
+        {
+            _context.Content.Add(content);
+            UpdateDatabase();
+        }
     }
 }

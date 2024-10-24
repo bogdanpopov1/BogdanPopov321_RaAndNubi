@@ -39,7 +39,7 @@ namespace RaAndNubi.Pages
                 else
                     _pet = DBManager.GetPets().FirstOrDefault(x => x.Id == 2);
 
-                NavigationService.Navigate(new PetInfoPage(_pet));
+                NavigationService.Navigate(new PetInfoPage(_pet, _selectedPerson));
             }
             else
                 MessageBox.Show("Выберите пользователя или проверьте пароль!", "Ошибка заполнения", MessageBoxButton.OK, MessageBoxImage.Error);

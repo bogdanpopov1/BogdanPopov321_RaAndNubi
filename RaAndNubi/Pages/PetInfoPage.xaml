@@ -26,19 +26,19 @@
             <ColumnDefinition Width="1100" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        
+
         <Label x:Name="Title" Content="ПИТОМЕЦ" FontWeight="Bold" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Background="{x:Null}" Foreground="#FFFF9E00" Grid.ColumnSpan="2" Grid.Row="0" />
-        <ListView x:Name="ListView" Margin="20,0,20,20" Background="WhiteSmoke" Grid.Column="0" Grid.Row="1" >
+        <ListView x:Name="ListView" Margin="20,0,20,34" Background="WhiteSmoke" Grid.Column="0" Grid.Row="1" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Фоточка красоточки" >
+                    <GridViewColumn Header="Фоточка красоточки" Width="300" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image x:Name="PetImg" Width="300" Stretch="UniformToFill" Source="{Binding Img}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Описание" Width="350"> 
+                    <GridViewColumn Header="Описание" Width="350">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Discription}" TextWrapping="Wrap" Margin="10" FontSize="20" />
@@ -52,7 +52,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Дата" Width="135">
+                    <GridViewColumn Header="Дата" Width="130">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Date, StringFormat='dd.MM.yyyy'}" TextWrapping="Wrap" Margin="10" FontSize="20" />
@@ -63,13 +63,38 @@
             </ListView.View>
         </ListView>
 
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,0,32,0">
             <WrapPanel Grid.Column="1" Margin="0" HorizontalAlignment="Left" >
                 <Label Content="Поиск:" FontSize="20" Margin="0,0,10,0" />
                 <TextBox x:Name="SearchTB" Width="400" TextChanged="SearchTB_TextChanged" Margin="0,0,20,0" FontSize="20" />
-                <ComboBox x:Name="SortCB" Width="270" FontSize="20" SelectionChanged="SortCB_SelectionChanged" />
+                <ComboBox x:Name="SortCB" FontSize="20" SelectionChanged="SortCB_SelectionChanged" Width="264" />
+            </WrapPanel>
+
+            <Label Content="Добавить публикацию" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFFF9E00" Margin="0,90,0,0" FontWeight="Bold" />
+
+            <WrapPanel Margin="10,20,0,0">
+                <Button x:Name="LoadImgBtn" Click="LoadImgBtn_Click" Background="LightGray" BorderBrush="Gray" Width="300" Height="300" >
+                    <Image x:Name="PetImg" Width="300" Source="{Binding Photo}"/>
+                    <Button.ContextMenu>
+                        <ContextMenu x:Name="ContextM" >
+                            <MenuItem x:Name="DeletePhoto_MI" Header="Удалить" Click="DeletePhoto_Click" IsCheckable="True" Icon="🗑️"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                </Button>
+
+                <StackPanel Margin="10,0,0,0" Orientation="Vertical" Width="448">
+                    <ComboBox x:Name="SelectPetCB" DisplayMemberPath="Name" SelectedValuePath="Name"  FontSize="20" VerticalAlignment="Top" />
+                    <WrapPanel Margin="-20,230,0,0" MaxWidth="430">
+                        <TextBlock Text="← Нажмите, чтобы добавить фото" FontSize="20"  Foreground="LightGray" VerticalAlignment="Bottom" />
+                        <TextBlock x:Name="NumberOfCharactersTB" Text="0/500" FontSize="20" Foreground="LightGray" Margin="40,0,0,0" />
+                    </WrapPanel>
+                </StackPanel>
             </WrapPanel>
             
+            <TextBox x:Name="NewPostDiscrTB" Text="Описание к фотографии" Height="312" Margin="10,10,0,0"  Padding="6" FontSize="20" Foreground="LightGray" TextWrapping="Wrap" 
+                     TextChanged="NewPostDiscrTB_TextChanged" GotFocus="NewPostDiscrTB_GotFocus" LostFocus="NewPostDiscrTB_LostFocus" Panel.ZIndex="0"/>
+
+            <Button x:Name="AddPostBtn" Content="Опубликовать" FontSize="24" FontWeight="Bold" Foreground="White" Background="#FFFF9E00" Padding="12" BorderBrush="#FFBF7B00" Cursor="Hand" Margin="10,10,0,0" Click="AddPostBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
