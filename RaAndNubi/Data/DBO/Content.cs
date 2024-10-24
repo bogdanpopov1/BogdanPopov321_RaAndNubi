@@ -16,9 +16,12 @@ namespace RaAndNubi.Data.DBO
     {
         public int Id { get; set; }
         public int Id_pet { get; set; }
-        public string Img { get; set; }
+        public byte[] Img { get; set; }
         public string Discription { get; set; }
+        public int Id_person { get; set; }
+        public System.DateTime Date { get; set; }
     
+        public virtual Person Person { get; set; }
         public virtual Pet Pet { get; set; }
     }
 }

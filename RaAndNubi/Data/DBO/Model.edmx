@@ -11,8 +11,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_pet" Type="int" Nullable="false" />
-          <Property Name="Img" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Img" Type="image" />
           <Property Name="Discription" Type="varchar" MaxLength="500" />
+          <Property Name="Id_person" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -39,6 +41,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK_Content_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="Id_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Content_Pet">
           <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
           <End Role="Content" Type="Self.Content" Multiplicity="*" />
@@ -56,6 +70,10 @@
           <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Content_Person" Association="Self.FK_Content_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
           <AssociationSet Name="FK_Content_Pet" Association="Self.FK_Content_Pet">
             <End Role="Pet" EntitySet="Pet" />
             <End Role="Content" EntitySet="Content" />
@@ -72,8 +90,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_pet" Type="Int32" Nullable="false" />
-          <Property Name="Img" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Img" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Discription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Id_person" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Content_Person" FromRole="Content" ToRole="Person" />
           <NavigationProperty Name="Pet" Relationship="Self.FK_Content_Pet" FromRole="Content" ToRole="Pet" />
         </EntityType>
         <EntityType Name="Person">
@@ -83,6 +104,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Content" Relationship="Self.FK_Content_Person" FromRole="Person" ToRole="Content" />
         </EntityType>
         <EntityType Name="Pet">
           <Key>
@@ -102,6 +124,18 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <Association Name="FK_Content_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Content" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Content">
+              <PropertyRef Name="Id_person" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Content_Pet">
           <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
           <End Role="Content" Type="Self.Content" Multiplicity="*" />
@@ -119,6 +153,10 @@
           <EntitySet Name="Person" EntityType="Self.Person" />
           <EntitySet Name="Pet" EntityType="Self.Pet" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Content_Person" Association="Self.FK_Content_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Content" EntitySet="Content" />
+          </AssociationSet>
           <AssociationSet Name="FK_Content_Pet" Association="Self.FK_Content_Pet">
             <End Role="Pet" EntitySet="Pet" />
             <End Role="Content" EntitySet="Content" />
@@ -137,6 +175,8 @@
                 <ScalarProperty Name="Id_pet" ColumnName="Id_pet" />
                 <ScalarProperty Name="Img" ColumnName="Img" />
                 <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="Id_person" ColumnName="Id_person" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

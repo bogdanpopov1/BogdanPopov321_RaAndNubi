@@ -9,20 +9,12 @@ namespace RaAndNubi
 {
     public partial class MainWindow : Window
     {
-        private Person _person;
-        private Pet _pet;
 
-        public MainWindow(Person person)
+        public MainWindow()
         {
             InitializeComponent();
-            _person = person;
 
-            if (person.Id == 1)
-                _pet = DBManager.GetPets().FirstOrDefault(x => x.Id == 1);
-            else
-                _pet = DBManager.GetPets().FirstOrDefault(x => x.Id == 2);
-
-            MainFrame.Navigate(new PetInfoPage(_pet));
+            MainFrame.Navigate(new AuthorizationPage());
         }
     }
 }

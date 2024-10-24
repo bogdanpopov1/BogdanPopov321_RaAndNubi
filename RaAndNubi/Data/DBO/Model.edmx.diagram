@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bf0dcec0b4c7490cbc09937591a535b7" Name="Diagram1">
-        <EntityTypeShape EntityType="RaAndNubiModel.Content" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RaAndNubiModel.Person" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RaAndNubiModel.Pet" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RaAndNubiModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="24b0494a73d149dd95dea55b6efb0811" Name="Diagram1">
+        <EntityTypeShape EntityType="RaAndNubiModel.Content" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaAndNubiModel.Person" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaAndNubiModel.Pet" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RaAndNubiModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="RaAndNubiModel.FK_Content_Person" ManuallyRouted="false" />
         <AssociationConnector Association="RaAndNubiModel.FK_Content_Pet" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

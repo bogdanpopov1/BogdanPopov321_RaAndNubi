@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RaAndNubi.Data;
+using RaAndNubi.Data.DBO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +12,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using RaAndNubi.Data.DBO;
-using RaAndNubi.Data;
 
-namespace RaAndNubi.Windows
+namespace RaAndNubi.Pages
 {
-    public partial class AuthorizationWindow : Window
+    public partial class AuthorizationPage : Page
     {
         private List<Person> _people;
         private Person _selectedPerson;
-        public AuthorizationWindow()
+        private Pet _pet;
+        public AuthorizationPage()
         {
+            InitializeComponent();
             InitializeComponent();
             _people = DBManager.GetPeople();
             LoginCB.ItemsSource = _people;
@@ -31,8 +34,12 @@ namespace RaAndNubi.Windows
         {
             if (LoginCB.SelectedItem != null && _selectedPerson.Password.ToString() == PasswordPB.Password.Trim())
             {
-                new MainWindow(_selectedPerson).Show();
-                this.Close();
+                if (_selectedPerson.Id == 1)
+                    _pet = DBManager.GetPets().FirstOrDefault(x => x.Id == 1);
+                else
+                    _pet = DBManager.GetPets().FirstOrDefault(x => x.Id == 2);
+
+                NavigationService.Navigate(new PetInfoPage(_pet));
             }
             else
                 MessageBox.Show("Выберите пользователя или проверьте пароль!", "Ошибка заполнения", MessageBoxButton.OK, MessageBoxImage.Error);
