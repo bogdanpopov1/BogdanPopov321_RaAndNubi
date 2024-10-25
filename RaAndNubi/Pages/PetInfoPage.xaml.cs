@@ -189,5 +189,15 @@ namespace RaAndNubi.Pages
             NewPostDiscrTB.Text = _initialText;
             NewPostDiscrTB.Foreground = Brushes.LightGray;
         }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var message = "Вы действительно хотите выйти?" + Environment.NewLine + "Все несохраненные изменения будут потеряны!";
+            var result = MessageBox.Show(message, "Выход из аккаунта", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+                NavigationService.Navigate(new AuthorizationPage());
+            else
+                return;
+        }
     }
 }

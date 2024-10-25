@@ -179,6 +179,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\Icons\main-icon.png" />
+    <Resource Include="Images\Icons\fire-exit.png" />
     <Resource Include="Images\Icons\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

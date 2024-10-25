@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:RaAndNubi"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="1020" Width="1900">
+        Icon="/Images/Icons/main-icon.png"
+        Title="Животный инстаграм" Height="1020" Width="1900">
     <Grid>
         <Frame x:Name="MainFrame" Height="1000" Width="1900" NavigationUIVisibility="Hidden" />
     </Grid>
