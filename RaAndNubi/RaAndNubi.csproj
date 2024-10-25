@@ -179,6 +179,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Data\DBO\RaAndNubi.sql" />
     <Resource Include="Images\Icons\main-icon.png" />
     <Resource Include="Images\Icons\fire-exit.png" />
     <Resource Include="Images\Icons\delete.png" />
